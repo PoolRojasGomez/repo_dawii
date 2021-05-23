@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.empresa.entity.Alumno;
@@ -29,7 +31,7 @@ public class AlumnoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Alumno> registra(Alumno obj){
+	public ResponseEntity<Alumno> registra(@RequestBody Alumno obj){
 		Alumno objSalida = service.insertaActualizaAlumno(obj);
 		if(objSalida != null) {
 			return ResponseEntity.ok(objSalida);
@@ -37,4 +39,16 @@ public class AlumnoController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
+	@PutMapping
+	public ResponseEntity<Alumno> actualizar(@RequestBody Alumno obj){
+		Alumno objSalida = service.insertaActualizaAlumno(obj);
+		if(objSalida != null) {
+			return ResponseEntity.ok(objSalida);
+		}else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	
 }
